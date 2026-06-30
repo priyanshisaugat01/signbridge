@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — SignBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="demo.html">Live demo</a>
+      <a href="about.html" class="active">About</a>
+      <a href="demo.html" class="nav-cta">Try it →</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<header class="wrap page-head">
+  <span class="kicker">About</span>
+  <h1 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem)">Communication<br>is a right, <span class="em">not a fee.</span></h1>
+  <p class="lead">SignBridge exists to close the gap between deaf and hearing people — at zero cost, everywhere.</p>
+</header>
+
+<!-- STATS -->
+<section class="wrap section-sm">
+  <div class="stats r">
+    <div class="stat"><b>70M+</b><span>deaf worldwide</span></div>
+    <div class="stat"><b>$0</b><span>cost to use</span></div>
+    <div class="stat"><b>90%</b><span>born to hearing parents</span></div>
+    <div class="stat"><b>26+</b><span>letters supported</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- USE CASES -->
+<section class="section">
+  <div class="wrap split">
+    <div class="r">
+      <span class="kicker">Where it helps</span>
+      <h2 class="h2" style="margin:14px 0 16px">Built for everyday moments.</h2>
+      <p class="lead">The places where a missing interpreter shouldn't mean a missed conversation.</p>
+    </div>
+    <div class="uc r d1">
+      <div class="row"><span class="e">🏥</span><div><h4>Healthcare</h4><p>Talk to staff without waiting on an interpreter.</p></div></div>
+      <div class="row"><span class="e">🎓</span><div><h4>Education</h4><p>Students keep up in any classroom.</p></div></div>
+      <div class="row"><span class="e">💼</span><div><h4>Work</h4><p>Join meetings and interviews directly.</p></div></div>
+      <div class="row"><span class="e">🏛️</span><div><h4>Public services</h4><p>Banks, transport, government offices.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta r">
+      <h2 class="h2">Help build it.</h2>
+      <p>SignBridge is open source. Star the repo or try the demo.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="demo.html" class="btn btn-primary">Open demo →</a>
+        <a href="https://github.com" class="btn btn-ghost">⌘ GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+        <p>Real-time sign language translation that runs anywhere.</p>
+        <div class="soc"><a href="https://github.com">⌘</a><a href="#">𝕏</a><a href="#">in</a><a href="mailto:hello@signbridge.ai">✉</a></div>
+      </div>
+      <div class="foot-col"><h5>Product</h5><a href="how-it-works.html">How it works</a><a href="demo.html">Live demo</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h5>Project</h5><a href="https://github.com">GitHub</a><a href="#">Docs</a><a href="#">Roadmap</a></div>
+      <div class="foot-col"><h5>Contact</h5><a href="mailto:hello@signbridge.ai">hello@signbridge.ai</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot"><p>© 2026 SignBridge · open source</p><a href="https://github.com" class="btn btn-ghost" style="padding:7px 14px;font-size:.8rem">⌘ View on GitHub</a></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

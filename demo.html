@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live demo — SignBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* demo-only styles */
+.demo-shell{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg2)}
+.demo-bar{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 16px}
+.demo-bar i{width:9px;height:9px;border-radius:50%;display:block}
+.demo-bar i:nth-child(1){background:#e0564f}.demo-bar i:nth-child(2){background:#e0a23f}.demo-bar i:nth-child(3){background:#3fb86a}
+.demo-bar .ttl{margin-left:8px;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.demo-bar .live{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--accent);display:flex;align-items:center;gap:6px}
+.demo-bar .live .d{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.4s infinite}
+.demo-cols{display:grid;grid-template-columns:1.25fr 1fr}
+.col-cam{padding:18px;border-right:1px solid var(--line)}
+.col-out{padding:18px;display:flex;flex-direction:column;gap:14px}
+.lab{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.feed{position:relative;aspect-ratio:4/3;background:#000;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+#vid{width:100%;height:100%;object-fit:cover;display:none;transform:scaleX(-1)}
+#cv{position:absolute;inset:0;width:100%;height:100%;transform:scaleX(-1)}
+.feed .fps{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:.64rem;color:var(--accent);background:rgba(0,0,0,.7);border:1px solid var(--line2);border-radius:6px;padding:3px 8px;z-index:5}
+.feed .corner{position:absolute;width:15px;height:15px;border:0 solid var(--accent);opacity:.6}
+.feed .tl{top:8px;left:8px;border-top-width:2px;border-left-width:2px}
+.feed .tr{top:8px;right:8px;border-top-width:2px;border-right-width:2px}
+.feed .bl{bottom:8px;left:8px;border-bottom-width:2px;border-left-width:2px}
+.feed .br{bottom:8px;right:8px;border-bottom-width:2px;border-right-width:2px}
+.feed .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;color:var(--muted);font-size:.86rem}
+.feed .ph .hand{font-size:2.4rem;animation:bob 3s ease-in-out infinite}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.chip{border:1px solid var(--line);border-radius:8px;padding:9px;text-align:center;background:var(--bg3)}
+.chip b{font-family:var(--mono);font-size:1rem;color:var(--accent);display:block}
+.chip span{font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lmbox{border:1px solid var(--line);border-radius:10px;background:var(--bg3);padding:13px}
+.lmrow{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.66rem;color:var(--muted);padding:2px 0}
+.lmrow .i{width:14px;color:var(--accent)}
+.lmrow .nm{width:64px}
+.lmrow .tk{flex:1;height:3px;background:rgba(255,255,255,.05);border-radius:3px}
+.lmrow .tk i{display:block;height:3px;border-radius:3px;background:var(--accent);transition:width .35s}
+.predbox{border:1px solid var(--line);border-radius:10px;background:var(--bg3);padding:15px}
+.predbox .big{font-family:var(--mono);font-size:3.4rem;font-weight:700;color:var(--accent);line-height:1}
+.sent{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:11px 13px;margin-top:10px;font-family:var(--mono);letter-spacing:.12em;font-size:.9rem;min-height:42px;word-break:break-all}
+.sent .cur{display:inline-block;width:2px;height:1em;background:var(--accent);vertical-align:middle;animation:blink 1s step-end infinite}
+.confrow{display:flex;align-items:center;gap:10px;margin-top:12px}
+.confrow .l{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.confrow .tk{flex:1;height:4px;background:rgba(255,255,255,.06);border-radius:4px}
+.confrow .tk i{display:block;height:4px;border-radius:4px;background:var(--accent);transition:width .4s;width:0}
+.confrow .p{font-family:var(--mono);font-size:.74rem;color:var(--accent);min-width:32px}
+.toggle{display:flex;gap:8px;margin-bottom:18px}
+.toggle button{flex:1;padding:10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--muted);font-family:inherit;font-size:.82rem;cursor:pointer;transition:all .2s}
+.toggle button.on{background:rgba(25,230,140,.1);border-color:var(--line2);color:var(--accent)}
+.acts{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:11px 15px;font-size:.82rem;display:flex;gap:9px;align-items:center;z-index:999;transform:translateY(80px);opacity:0;transition:all .35s}
+.toast.show{transform:none;opacity:1}
+@media(max-width:920px){.demo-cols{grid-template-columns:1fr}.col-cam{border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="demo.html" class="active">Live demo</a>
+      <a href="about.html">About</a>
+      <a href="demo.html" class="nav-cta">Try it →</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<header class="wrap page-head">
+  <span class="kicker">Live demo</span>
+  <h1 class="display" style="font-size:clamp(2rem,4.5vw,3rem)">Try it now.</h1>
+  <p class="lead">Hit <b class="em">Camera mode</b> and allow access for real tracking, or watch <b class="em">Demo mode</b> simulate it.</p>
+</header>
+
+<section class="wrap section-sm" style="padding-top:24px">
+  <div class="toggle">
+    <button class="on" id="t-demo" onclick="setMode('demo')">🎮 Demo mode</button>
+    <button id="t-cam" onclick="setMode('camera')">📷 Camera mode (real AI)</button>
+  </div>
+
+  <div class="demo-shell r">
+    <div class="demo-bar">
+      <i></i><i></i><i></i>
+      <span class="ttl">signbridge — dashboard</span>
+      <span class="live"><span class="d"></span><span id="live">demo mode</span></span>
+    </div>
+    <div class="demo-cols">
+      <!-- camera -->
+      <div class="col-cam">
+        <div class="lab">webcam feed</div>
+        <div class="feed">
+          <video id="vid" autoplay muted playsinline></video>
+          <canvas id="cv"></canvas>
+          <div class="fps" id="fps">— fps</div>
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+          <div class="ph" id="ph">
+            <div class="hand">✋</div>
+            <div id="ph-txt">Demo mode running — switch to Camera mode for real tracking</div>
+            <button class="btn btn-primary" id="cam-btn" onclick="startCamera()" style="font-size:.84rem">Enable camera</button>
+          </div>
+        </div>
+        <div class="chips">
+          <div class="chip"><b id="c-fps">—</b><span>fps</span></div>
+          <div class="chip"><b id="c-lm">—</b><span>points</span></div>
+          <div class="chip"><b id="c-cf">—%</b><span>conf</span></div>
+          <div class="chip"><b>~4ms</b><span>latency</span></div>
+        </div>
+      </div>
+      <!-- output -->
+      <div class="col-out">
+        <div>
+          <div class="lab">landmarks · 21 pts</div>
+          <div class="lmbox" id="lmbox"></div>
+        </div>
+        <div class="predbox">
+          <div class="lab">prediction</div>
+          <div class="big" id="p-char">–</div>
+          <div class="sent"><span id="p-sent"></span><span class="cur"></span></div>
+          <div class="confrow"><span class="l">conf</span><div class="tk"><i id="p-bar"></i></div><span class="p" id="p-pct">0%</span></div>
+        </div>
+        <div class="acts">
+          <button class="btn btn-primary" onclick="speak()" id="speak-btn" style="justify-content:center">🔊 Speak sentence</button>
+          <button class="btn btn-ghost" onclick="clearAll()" style="justify-content:center">Clear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:14px;text-align:center">Camera mode loads Google MediaPipe and tracks your real hand. Nothing is uploaded — it all runs on your device.</p>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+        <p>Real-time sign language translation that runs anywhere.</p>
+        <div class="soc"><a href="https://github.com">⌘</a><a href="#">𝕏</a><a href="#">in</a><a href="mailto:hello@signbridge.ai">✉</a></div>
+      </div>
+      <div class="foot-col"><h5>Product</h5><a href="how-it-works.html">How it works</a><a href="demo.html">Live demo</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h5>Project</h5><a href="https://github.com">GitHub</a><a href="#">Docs</a><a href="#">Roadmap</a></div>
+      <div class="foot-col"><h5>Contact</h5><a href="mailto:hello@signbridge.ai">hello@signbridge.ai</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot"><p>© 2026 SignBridge · open source</p><a href="https://github.com" class="btn btn-ghost" style="padding:7px 14px;font-size:.8rem">⌘ View on GitHub</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span id="toast-ic">✅</span><span id="toast-msg"></span></div>
+
+<script src="app.js"></script>
+<script src="demo.js"></script>
+</body>
+</html>

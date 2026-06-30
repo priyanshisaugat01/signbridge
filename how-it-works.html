@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How it works — SignBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html" class="active">How it works</a>
+      <a href="demo.html">Live demo</a>
+      <a href="about.html">About</a>
+      <a href="demo.html" class="nav-cta">Try it →</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="wrap page-head">
+  <span class="kicker">How it works</span>
+  <h1 class="display" style="font-size:clamp(2.2rem,5vw,3.4rem)">Webcam to voice<br>in five steps.</h1>
+  <p class="lead">Every step runs locally, end-to-end, in under 4 milliseconds per frame.</p>
+</header>
+
+<!-- STEPS -->
+<section class="wrap section-sm">
+  <div class="steps r">
+    <div class="step"><span class="n">01</span><span class="ic">📷</span><h3>Capture</h3><p>Webcam streams live at 30fps.</p></div>
+    <div class="step"><span class="n">02</span><span class="ic">✋</span><h3>Detect</h3><p>MediaPipe maps 21 hand points.</p></div>
+    <div class="step"><span class="n">03</span><span class="ic">🧠</span><h3>Predict</h3><p>The model reads the points, returns a letter.</p></div>
+    <div class="step"><span class="n">04</span><span class="ic">💬</span><h3>Build</h3><p>Letters form words on screen.</p></div>
+    <div class="step"><span class="n">05</span><span class="ic">🔊</span><h3>Speak</h3><p>Web Speech reads it aloud.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TECH -->
+<section class="section">
+  <div class="wrap">
+    <span class="kicker">Built with</span>
+    <h2 class="h2" style="margin:14px 0 36px">A lean, modern stack.</h2>
+    <div class="tech r">
+      <div class="t"><div class="lg">⚛️</div><div><h4>React</h4><span>frontend</span></div></div>
+      <div class="t"><div class="lg">✋</div><div><h4>MediaPipe</h4><span>hand tracking</span></div></div>
+      <div class="t"><div class="lg">🌲</div><div><h4>Random Forest</h4><span>letter model</span></div></div>
+      <div class="t"><div class="lg">🎨</div><div><h4>Tailwind</h4><span>styling</span></div></div>
+      <div class="t"><div class="lg">🔊</div><div><h4>Web Speech API</h4><span>text-to-speech</span></div></div>
+      <div class="t"><div class="lg">🔬</div><div><h4>TensorFlow.js</h4><span>future scope</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta r">
+      <h2 class="h2">Try the pipeline yourself.</h2>
+      <p>The live demo runs this exact flow in your browser.</p>
+      <a href="demo.html" class="btn btn-primary">Open live demo →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+        <p>Real-time sign language translation that runs anywhere.</p>
+        <div class="soc"><a href="https://github.com">⌘</a><a href="#">𝕏</a><a href="#">in</a><a href="mailto:hello@signbridge.ai">✉</a></div>
+      </div>
+      <div class="foot-col"><h5>Product</h5><a href="how-it-works.html">How it works</a><a href="demo.html">Live demo</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h5>Project</h5><a href="https://github.com">GitHub</a><a href="#">Docs</a><a href="#">Roadmap</a></div>
+      <div class="foot-col"><h5>Contact</h5><a href="mailto:hello@signbridge.ai">hello@signbridge.ai</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot"><p>© 2026 SignBridge · open source</p><a href="https://github.com" class="btn btn-ghost" style="padding:7px 14px;font-size:.8rem">⌘ View on GitHub</a></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

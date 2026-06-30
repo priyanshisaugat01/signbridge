@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SignBridge — Real-time sign language translation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="demo.html">Live demo</a>
+      <a href="about.html">About</a>
+      <a href="demo.html" class="nav-cta">Try it →</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="pill"><span class="dot"></span>Runs offline · in your browser</span>
+      <h1 class="display">Hands to words,<br>in <span class="em">real time.</span></h1>
+      <p class="lead">SignBridge reads sign language through your webcam and turns it into text and speech — no internet, no install.</p>
+      <div class="hero-actions">
+        <a href="demo.html" class="btn btn-primary">Launch demo →</a>
+        <a href="how-it-works.html" class="btn btn-ghost">How it works</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>30fps</b><span>real-time</span></div>
+        <div><b>21</b><span>landmarks</span></div>
+        <div><b>100%</b><span>offline</span></div>
+      </div>
+    </div>
+
+    <!-- live device mock -->
+    <div class="device r">
+      <div class="device-bar"><i></i><i></i><i></i><span>signbridge — camera</span></div>
+      <div class="device-body">
+        <div class="cam">
+          <div class="sweep"></div>
+          <svg viewBox="0 0 100 130" fill="none">
+            <path d="M50 120C30 120 15 105 15 85V40c0-4 3-7 7-7s7 3 7 7v20c0-3 3-6 7-6s7 3 7 6v-2c0-4 3-7 7-7s7 3 7 7v2c0-3 3-6 7-6s7 3 7 6V40c0-4 3-7 7-7s7 3 7 7v45c0 20-15 35-35 35Z" fill="rgba(25,230,140,.13)" stroke="#19e68f" stroke-width="1.4"/>
+            <circle cx="29" cy="40" r="2.6" fill="#19e68f"/><circle cx="29" cy="60" r="2.6" fill="#19e68f"/>
+            <circle cx="43" cy="38" r="2.6" fill="#19e68f"/><circle cx="43" cy="60" r="2.6" fill="#19e68f"/>
+            <circle cx="57" cy="36" r="2.6" fill="#19e68f"/><circle cx="57" cy="58" r="2.6" fill="#19e68f"/>
+            <circle cx="71" cy="38" r="2.6" fill="#19e68f"/><circle cx="71" cy="60" r="2.6" fill="#19e68f"/>
+            <circle cx="85" cy="42" r="2.6" fill="#19e68f"/><circle cx="50" cy="92" r="3" fill="rgba(25,230,140,.5)"/>
+          </svg>
+        </div>
+        <div class="read">
+          <div class="big" id="h-char">H</div>
+          <div class="col">
+            <div class="lbl">prediction · <span id="h-conf">94</span>%</div>
+            <div class="word" id="h-word">H E L L O</div>
+            <div class="bar"><i id="h-bar" style="width:94%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- VALUE -->
+<section class="section">
+  <div class="wrap">
+    <span class="kicker">Why it matters</span>
+    <h2 class="h2" style="margin:14px 0 36px;max-width:18ch">70 million people sign. Most of the world can't read it.</h2>
+    <div class="grid grid-3">
+      <div class="cell r"><span class="ic">💸</span><h3>No interpreter fees</h3><p>Interpreters cost $50–150/hr. SignBridge is free and always on.</p><span class="tag">Affordable</span></div>
+      <div class="cell r d1"><span class="ic">📶</span><h3>Works without internet</h3><p>Everything runs on-device. No signal needed — even in a hospital basement.</p><span class="tag">Offline</span></div>
+      <div class="cell r d2"><span class="ic">🔒</span><h3>Private by default</h3><p>Your camera feed never leaves your device. Zero data collected.</p><span class="tag">On-device</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta r">
+      <h2 class="h2">See it work in your browser.</h2>
+      <p>Open the demo, allow your camera, and start signing the alphabet.</p>
+      <a href="demo.html" class="btn btn-primary">Open live demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="index.html" class="brand"><span class="mark">S</span>Sign<em>Bridge</em></a>
+        <p>Real-time sign language translation that runs anywhere.</p>
+        <div class="soc">
+          <a href="https://github.com" title="GitHub">⌘</a>
+          <a href="#" title="X">𝕏</a>
+          <a href="#" title="LinkedIn">in</a>
+          <a href="mailto:hello@signbridge.ai" title="Email">✉</a>
+        </div>
+      </div>
+      <div class="foot-col"><h5>Product</h5><a href="how-it-works.html">How it works</a><a href="demo.html">Live demo</a><a href="about.html">About</a></div>
+      <div class="foot-col"><h5>Project</h5><a href="https://github.com">GitHub</a><a href="#">Docs</a><a href="#">Roadmap</a></div>
+      <div class="foot-col"><h5>Contact</h5><a href="mailto:hello@signbridge.ai">hello@signbridge.ai</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot">
+      <p>© 2026 SignBridge · open source</p>
+      <a href="https://github.com" class="btn btn-ghost" style="padding:7px 14px;font-size:.8rem">⌘ View on GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
