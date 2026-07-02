@@ -1,0 +1,13 @@
+﻿# Python virtual environment - never upload this
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/

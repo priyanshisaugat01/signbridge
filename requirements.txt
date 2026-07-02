@@ -1,0 +1,11 @@
+# SignBridge ML — Python dependencies
+# IMPORTANT: mediapipe needs Python 3.8–3.11 (it does NOT support 3.12+ yet).
+# Check your version with:  python --version
+
+opencv-python==4.10.0.84
+mediapipe==0.10.14
+scikit-learn==1.5.1
+numpy==1.26.4
+pandas==2.2.2
+joblib==1.4.2
+pyttsx3==2.90
